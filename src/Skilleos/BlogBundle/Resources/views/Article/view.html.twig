@@ -1,3 +1,10 @@
 <body>
-	<h1>Page permettant de voir un article</h1>
+	<h1> {{article.title}} </h1>
+	<div> {{article.content}} </div>
+	<a href="{{ path('skilleos_blog_edit', { 'id': article.id }) }}">
+
+    Modifier 
+
+</a>
+	<a href=""></a>
 </body>
