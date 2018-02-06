@@ -1,3 +1,19 @@
-skilleos_blog_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: SkilleosBlogBundle:Default:index }
+skilleos_blog_list:
+    path:     /list
+    defaults: { _controller: SkilleosBlogBundle:Article:list }
+
+skilleos_blog_view:
+    path:     /Article/{id}
+    defaults: { _controller: SkilleosBlogBundle:Article:view }
+
+skilleos_blog_add:
+    path:     /add
+    defaults: { _controller: SkilleosBlogBundle:Article:add }
+
+skilleos_blog_edit:
+    path:     /edit/{id}
+    defaults: { _controller: SkilleosBlogBundle:Article:edit }
+
+skilleos_blog_delete:
+    path:     /delete
+    defaults: { _controller: SkilleosBlogBundle:Article:delete }
