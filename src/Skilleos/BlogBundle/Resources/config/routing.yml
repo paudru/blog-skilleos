@@ -15,5 +15,5 @@ skilleos_blog_edit:
     defaults: { _controller: SkilleosBlogBundle:Article:edit }
 
 skilleos_blog_delete:
-    path:     /delete
+    path:     /delete/{id}
     defaults: { _controller: SkilleosBlogBundle:Article:delete }

@@ -10,7 +10,11 @@ class ArticleController extends Controller
 {
     public function listAction()
     {
-        return $this->render('SkilleosBlogBundle:Article:list.html.twig');
+        $repository = $this->getDoctrine()->getManager()->getRepository('SkilleosBlogBundle:Article');
+        $listArticles = $repository->findAll();
+
+
+        return $this->render('SkilleosBlogBundle:Article:list.html.twig', array('list' => $listArticles));
     }
 
     public function viewAction($id)
@@ -64,15 +68,34 @@ class ArticleController extends Controller
         	$em = $this->getDoctrine()->getManager();
         	$em->persist($article);
         	$em->flush();
+
+        return $this->redirect($this->generateUrl('skilleos_blog_view', array('id' => $article->getId())));
         }
 
 
 
-        return $this->render('SkilleosBlogBundle:Article:edit.html.twig', array('form' => $form->createView()));
+        return $this->render('SkilleosBlogBundle:Article:edit.html.twig', array('form' => $form->createView(), 'id' => $id));
     }
 
-    public function deleteAction()
+    public function deleteAction($id, Request $request)
     {
-        return $this->render('SkilleosBlogBundle:Article:delete.html.twig');
+        $article = $this->getDoctrine()->getManager()->getRepository('SkilleosBlogBundle:Article')->find($id);
+
+        $form = $this->get('form.factory')
+          ->createBuilder('form', $article)
+          ->add('delete', 'submit')
+          ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()){
+        	$em = $this->getDoctrine()->getManager();
+        	$em->remove($article);
+        	$em->flush();
+
+        	return $this->redirect($this->generateUrl('skilleos_blog_list'));
+        }
+
+        return $this->render('SkilleosBlogBundle:Article:delete.html.twig',array('form' => $form->createView(), 'id' => $id) );
     }
 }

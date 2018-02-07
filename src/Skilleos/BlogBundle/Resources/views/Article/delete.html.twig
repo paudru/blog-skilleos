@@ -1,3 +1,8 @@
 <body>
-	<h1>Page supprimer un article</h1>
+	<h1>Supprimer un article</h1>
+	<div class="well">
+		<p>Voulez-vous supprimer cet article?</p>
+		{{ form(form)}}
+	</div>
+	<a href="{{ path('skilleos_blog_view', { 'id': id }) }}"> Retour </a>
 </body>

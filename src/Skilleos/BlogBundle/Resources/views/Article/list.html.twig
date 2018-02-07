@@ -1,3 +1,12 @@
 <body>
-	<h1>Page Listant les articles</h1>
-</body>
+	<h1>Tous les articles</h1>
+	{% for article in list%}
+	<div>
+		<h3>{{article.title}}</h3>
+		<p>{{article.content}}</p>
+		<a href="{{ path('skilleos_blog_view', { 'id': article.id }) }}"> Lire </a>
+		<a href="{{ path('skilleos_blog_edit', { 'id': article.id }) }}"> Modifier </a>
+	</div>
+	{% endfor %}
+	<a href="{{ path('skilleos_blog_add') }}"> Ajouter un nouvel article </a>
+</body> 

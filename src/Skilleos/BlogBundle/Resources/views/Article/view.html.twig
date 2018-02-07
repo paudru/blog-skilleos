@@ -1,10 +1,7 @@
 <body>
+	<a href="{{ path('skilleos_blog_list') }}"> liste de tous les articles </a>
 	<h1> {{article.title}} </h1>
 	<div> {{article.content}} </div>
-	<a href="{{ path('skilleos_blog_edit', { 'id': article.id }) }}">
-
-    Modifier 
-
-</a>
-	<a href=""></a>
-</body>
+	<a href="{{ path('skilleos_blog_edit', { 'id': article.id }) }}"> Modifier </a>
+	<a href="{{ path('skilleos_blog_delete', { 'id': article.id }) }}"> Supprimer </a>
+	</body>
